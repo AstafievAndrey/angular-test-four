@@ -1,0 +1,10 @@
+@import "variables";
+
+.blue-line {
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    height: 200px;
+    z-index: -1;
+    background: $blue-light;
+}

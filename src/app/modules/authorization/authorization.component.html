@@ -1,0 +1,11 @@
+<div class="authorization">
+    <mat-card>
+        <div class="authorization-navigate">
+            <a [routerLink]="['login']" routerLinkActive="active">вход</a>
+            <a [routerLink]="['registration']" routerLinkActive="active">регистрация</a>
+        </div>
+        <div>
+            <router-outlet></router-outlet>
+        </div>
+    </mat-card>
+</div>

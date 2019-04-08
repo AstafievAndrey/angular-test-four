@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+
+import { AuthorizationService } from '../../services/authorization.service';
 
 @Component({
   selector: 'app-login',
@@ -7,7 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  public login = new FormControl(
+    '',
+    [Validators.required],
+    [this.authService.checkLoginValidate('exists')]
+  );
+
+  constructor(private authService: AuthorizationService) { }
 
   ngOnInit() {
   }

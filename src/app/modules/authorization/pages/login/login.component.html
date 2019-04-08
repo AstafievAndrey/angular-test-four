@@ -1,10 +1,18 @@
 <div>
   <mat-form-field class="full-width">
-    <input matInput placeholder="Введите логин">
+    <input matInput placeholder="Введите логин"
+      [formControl]="login">
+      <mat-error *ngIf="login.hasError('required')">
+        Поле 'логин' не может быть пустым
+      </mat-error>
+      <mat-error *ngIf="login.hasError('loginMissing')">
+        Пользователь с таким логином не зарегистрирован
+      </mat-error>
   </mat-form-field>
 </div>
 <div>
-  <button class="full-width" mat-raised-button color="primary">
+  <button class="full-width" mat-raised-button color="primary"
+    [disabled]="login.invalid">
     Войти
   </button>
 </div>

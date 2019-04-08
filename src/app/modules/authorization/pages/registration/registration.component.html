@@ -1,19 +1,39 @@
-<div>
-  <mat-form-field class="full-width">
-    <input matInput placeholder="Введите логин">
-  </mat-form-field>
-</div>
-<div class="user-name">
-  <mat-form-field class="margin-right">
-    <input matInput placeholder="Введите фамилию">
-  </mat-form-field>
-  <mat-form-field class="margin-left">
-    <input matInput placeholder="Введите имя">
-  </mat-form-field>
-</div>
-<div>
-  <button class="full-width" mat-raised-button color="primary">
-    Регистрация
-  </button>
-</div>
+<form [formGroup]="registrationForm">
+  <div>
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Введите логин" 
+        formControlName="login">
+        <mat-error *ngIf="registrationForm.get('login').hasError('required')">
+          Поле 'логин' не может быть пустым
+        </mat-error>
+        <mat-error *ngIf="registrationForm.get('login').hasError('loginExists')">
+          Пользователь с таким логином уже существует
+        </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="user-name">
+    <mat-form-field class="margin-right">
+      <input matInput placeholder="Введите фамилию"
+        formControlName="firstName">
+        <mat-error *ngIf="registrationForm.get('firstName').hasError('required')">
+          Поле 'фамилия' не может быть пустым
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field class="margin-left">
+      <input matInput placeholder="Введите имя"
+        formControlName="name">
+        <mat-error *ngIf="registrationForm.get('name').hasError('required')">
+          Поле 'имя' не может быть пустым
+        </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="registration-btn">
+    <button class="full-width" 
+      mat-raised-button color="primary"
+      [disabled]="registrationForm.invalid"
+      (click)="onSubmit()">
+      Регистрация
+    </button>
+  </div>
+</form>
   

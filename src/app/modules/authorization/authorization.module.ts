@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AuthorizationRoutingModule } from './authorization-routing.module';
 import { SharedModule } from '@shared/shared.module';
@@ -14,6 +15,7 @@ import { RegistrationComponent } from './pages/registration/registration.compone
     CommonModule,
     AuthorizationRoutingModule,
     SharedModule,
+    ReactiveFormsModule,
   ]
 })
 export class AuthorizationModule { }

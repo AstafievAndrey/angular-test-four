@@ -3,20 +3,32 @@ import { AbstractControl, ValidationErrors, AsyncValidatorFn } from '@angular/fo
 import { Observable } from 'rxjs';
 
 import { IndexedDbService } from '@core/services/indexed-db.service';
+import { LocalStorageService } from '@core/services/local-storage.service';
+import { User } from '@core/interfaces/user';
+import { AuthService } from '@core/services/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthorizationService {
 
-  constructor(private indexedDb: IndexedDbService) { }
+  constructor(
+    private indexedDb: IndexedDbService,
+    private localStorage: LocalStorageService,
+    private authService: AuthService,
+  ) { }
 
-  public searchUser(login: string): Observable<string> {
+  public searchUser(login: string): Observable<User> {
     return this.indexedDb.get('users', 'users', 'login', login);
   }
 
-  public addUser(data) {
+  public addUser(data): Observable<number> {
     return this.indexedDb.add('users', {...data, active: true});
+  }
+
+  public setActiveUser(user: User) {
+    this.localStorage.set('user', user);
+    this.authService.login();
   }
 
   public checkLoginValidate(type: string): AsyncValidatorFn {

@@ -1,0 +1,57 @@
+<div class="chat-container">
+  <div class="chat">
+      <div class="header">
+        <div class="name">{{user.firstName}} {{user.name}}</div>
+        <div class="online">online</div>
+      </div>
+      <div class="messages" #messageContainer>
+        <div *ngFor="let item of messages; index as i" class="message">
+          <div class="header" [ngClass]="{'current-user': (user.id === item.user_id)}">
+            <div class="name">{{item.user.firstName}} {{item.user.name}}</div>
+            <div class="left">
+              <div class="delete" 
+                (click)="onDelete({id:item.id, index:i})" 
+                *ngIf="(user.id === item.user_id)">
+                  <mat-icon>delete_forever</mat-icon>
+              </div>
+              <div class="edit"
+                (click)="onEdit({id:item.id, index:i})" 
+                 *ngIf="(user.id === item.user_id)">
+                  <mat-icon>edit</mat-icon>
+                </div>
+              <div class="date">{{item.date| date:'dd.MM.yyyy'}}</div>
+            </div>  
+          </div>
+          <div class="text">
+            {{item.text}}
+          </div>
+        </div>
+      </div>
+      <div class="send">
+        <div class="close-btn">
+          <button mat-icon-button 
+            *ngIf="editMessage"
+            (click)="onEditReset()">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+        <div class="text">
+          <mat-form-field class="textarea full-width">
+            <textarea
+              cdkTextareaAutosize
+              cdkAutosizeMaxRows="2"
+              matInput
+              errorState="false"
+              placeholder="Введите сообщение"
+              [formControl]="text"></textarea>
+          </mat-form-field>
+        </div>
+        <div class="send-btn">
+          <button mat-icon-button (click)="onSend()">
+            <mat-icon>send</mat-icon>
+          </button>
+        </div>
+      </div>
+  </div>
+</div>
+  

@@ -36,12 +36,29 @@ export class IndexedDbService {
     objectStore.delete(key);
   }
 
-  public add(table: string, data: any): void {
-    const transaction = this.db.transaction([table], 'readwrite');
-    const objectStore = transaction.objectStore(table);
-    objectStore.add(data);
+  public add(table: string, data: any): Observable<number> {
+    return Observable.create(observer => {
+      const transaction = this.db.transaction([table], 'readwrite');
+      const objectStore = transaction.objectStore(table);
+      const objectStoreRequest = objectStore.add(data);
+      objectStoreRequest.onsuccess = (event) => {
+        observer.next(event.target.result);
+        observer.complete();
+      };
+    });
   }
 
+  public put(table: string, data: any): Observable<number> {
+    return Observable.create(observer => {
+      const transaction = this.db.transaction([table], 'readwrite');
+      const objectStore = transaction.objectStore(table);
+      const objectStoreRequest = objectStore.put(data);
+      objectStoreRequest.onsuccess = (event) => {
+        observer.next(event.target.result);
+        observer.complete();
+      };
+    });
+  }
   public getAll(
     transactionName: string,
     objectStoreName: string,
@@ -73,6 +90,22 @@ export class IndexedDbService {
         };
     });
   }
+
+  public getById(
+    transactionName: string,
+    objectStoreName: string,
+    value: number
+  ): Observable<any> {
+    return Observable.create((observer) => {
+        const objectStore = this.db.transaction(transactionName).objectStore(objectStoreName);
+        const request = objectStore.get(value);
+        request.onsuccess = () => {
+          observer.next(request.result ? request.result : null);
+          observer.complete();
+        };
+    });
+  }
+
 
   public onUpgrade(e: any): void {
     const thisDB = e.target.result;

@@ -1,7 +1,13 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '~@angular/material/theming';
 @import "variables";
 
+html {
+    overflow-x: hidden;
+}
+
 html, body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     padding: 0px;
     margin: 0px;
     background: $grey;

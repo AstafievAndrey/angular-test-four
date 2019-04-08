@@ -23,7 +23,11 @@ export class RegistrationComponent implements OnInit {
   }
 
   onSubmit() {
-    this.authService.addUser(this.registrationForm.getRawValue());
+    this.authService.addUser(this.registrationForm.getRawValue()).subscribe(
+      id => {
+        console.log(`user add ${id}`);
+      }
+    );
     this.registrationForm.reset();
   }
 }

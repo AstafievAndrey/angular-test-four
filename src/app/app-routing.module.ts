@@ -8,8 +8,8 @@ const routes: Routes = [
   {path: 'auth', loadChildren: './modules/authorization/authorization.module#AuthorizationModule'},
   {path: 'chat', canActivate: [AuthGuard], loadChildren: './modules/chat/chat.module#ChatModule'},
   {path: '404', component: NotFoundComponent},
-  {path: '**', redirectTo: '/404'},
   {path: '', redirectTo: 'auth', pathMatch: 'full'},
+  {path: '**', redirectTo: '/404'},
 ];
 
 @NgModule({

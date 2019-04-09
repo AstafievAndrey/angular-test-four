@@ -4,18 +4,17 @@
 .chat-container {
     width: 80%;
     margin: 10px auto;
-    max-width: 800px;
     position: absolute;
-    height: calc(100% - 90px);
-    left: 50%;
+    width: 100%;
 }
 
 .chat {
     @include mat-elevation(2);
     background: white;
     position: relative;
-    left: -50%;
-    height: 100%;
+    margin: 0px auto;
+    max-width: 800px;
+    height: calc(100% - 90px);
     .online {
         margin-left: auto;
     }

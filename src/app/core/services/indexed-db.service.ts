@@ -41,7 +41,7 @@ export class IndexedDbService {
       const transaction = this.db.transaction([table], 'readwrite');
       const objectStore = transaction.objectStore(table);
       const objectStoreRequest = objectStore.add(data);
-      objectStoreRequest.onsuccess = (event) => {
+      objectStoreRequest.onsuccess = (event: any) => {
         observer.next(event.target.result);
         observer.complete();
       };
@@ -53,7 +53,7 @@ export class IndexedDbService {
       const transaction = this.db.transaction([table], 'readwrite');
       const objectStore = transaction.objectStore(table);
       const objectStoreRequest = objectStore.put(data);
-      objectStoreRequest.onsuccess = (event) => {
+      objectStoreRequest.onsuccess = (event: any) => {
         observer.next(event.target.result);
         observer.complete();
       };

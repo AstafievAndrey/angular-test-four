@@ -1,5 +1,11 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <span>Custom Toolbar</span>
+    <span class="cursor" [routerLink]="['/chat']">Material Chat Angular</span>
+    <span class="spacer"></span>
+    <span *ngIf="login$ | async as isLogin">
+        <mat-icon class="cursor"
+          *ngIf="isLogin"
+          (click)="onLogout()">power_settings_new</mat-icon>
+    </span>
   </mat-toolbar-row>
 </mat-toolbar>

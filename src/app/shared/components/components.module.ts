@@ -2,18 +2,18 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { MaterialModule } from '@shared/material/material.module';
-import { BlueLineComponent } from './blue-line/blue-line.component';
 import { DialogComponent } from './dialog/dialog.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
-  declarations: [BlueLineComponent, DialogComponent],
+  declarations: [DialogComponent, NotFoundComponent],
   imports: [
     CommonModule,
     MaterialModule,
   ],
   exports: [
-    BlueLineComponent,
     DialogComponent,
+    NotFoundComponent,
   ],
   entryComponents: [
     DialogComponent,

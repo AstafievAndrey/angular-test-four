@@ -13,6 +13,21 @@ html, body {
     background: $grey;
 }
 
+app-not-found {
+    position: absolute;
+    width: 100%;
+    height: calc(100% - 100px);
+}
+
+.cursor {
+    cursor: pointer;
+    outline: none;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
 .full-width {
     width: 100%;
 }
